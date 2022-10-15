@@ -181,7 +181,7 @@ h1 span:last-child::before{
     position: absolute;
     bottom: -10px;
     left: 5px;
-    width: 50vw;
+    width: 60vw;
     height: 5px;
     background-color: var(--gray-90);
 }
@@ -438,19 +438,14 @@ li a:hover {
 
 /* Showcase */
 .showcase {
-    min-height: 700px;
+    /* min-height: 700px; */
     height: 100vh;
-    display: flex;
-    align-items: center;
+    margin-top: var(--space-2);
 }
-.showcase-content {
-    display: flex;
-    flex-direction: column;
-}
-.showcase-content p {
-    margin-bottom: 3rem;
-    font-weight: var(--fw-light);
-    letter-spacing: 1px;
+@media screen and (orientation: landscape) and (hover: none){
+    .showcase {
+        height: 100%;
+    }
 }
 
 /* About */
