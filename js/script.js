@@ -113,7 +113,7 @@ const appMenuBtn = () => {
     })
 }
 
-appMenuBtn()
+// appMenuBtn()
 
 
 // Counter
@@ -159,7 +159,17 @@ observer.unobserve(statistics)
 CounterObserver.observe(statistics)
 }
 
-appCounter()
+// appCounter()
+
+
+// Faq
+const faq = document.querySelectorAll('.faq h3')
+
+faq.forEach(faq => {
+    faq.addEventListener('click', () => {
+        faq.parentNode.classList.toggle('active')
+    })
+})
 
 
 // Modal
