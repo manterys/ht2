@@ -107,9 +107,9 @@ img {
 /* Utility Classes */
 .max-width {
     width: 100%;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: 0 auto;
-    padding-left: var(--space-0_5);
+    padding-left: 1rem;
     padding-right: var(--space-0_5);
     transition: var(--transition-0_3);
 }
@@ -310,13 +310,6 @@ li a {
 li a:hover {
     color: var(--gray-70);
 }
-.social-link {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
 .menuActive .nav {
     transform: translateY(0px);
 }
@@ -357,7 +350,8 @@ h1, h2, h3, h4, p, span {
 h1 {
     font-weight: var(--fw-regular);
     text-transform: uppercase;
-    font-size: 25vw;
+    /* font-size: 25vw; */
+    font-size: clamp(7rem, 25vw, 18rem);
     line-height: 0.8;
     letter-spacing: 1px;
     margin-bottom: 3rem;
@@ -406,7 +400,7 @@ p{
     font-weight: var(--fw-bold);
 }
 .lead {
-    color: var(--gray-30);
+    line-height: 1.6;
 }
 .projects p {
     text-transform: uppercase;
@@ -458,6 +452,9 @@ h1 span:nth-child(4){
     animation-delay: 4.9s;
 }
 h1 svg{
+    width: 30vw;
+    height: auto;
+    margin: 1rem 0;
     animation-delay: 6.5s;
 }
 h1 span:last-child{
@@ -486,12 +483,16 @@ h1 span:last-child::before{
         height: 100%;
     }
 }
+@media screen and (min-width: 800px){
+    .showcase {
+        height: 100%;
+    }
+}
 
 /* About */
 .about {
     padding-top: var(--space-1_5);
     padding-bottom: var(--space-1_5);
-    background: cyan;
 }
 
 /* Projects */
@@ -501,7 +502,7 @@ h1 span:last-child::before{
     padding-bottom: var(--space-1_5);
 }
 .project {
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
 }
 .project:last-child {
     margin-bottom: 0rem;
