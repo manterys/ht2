@@ -28,18 +28,19 @@ const appLoader = () => {
             
             page.classList.add('loaded')
             setTimeout(() => (page.style.opacity = 1), 1000)
-        }, 1200)
+        }, 2000)
     }   
     load()
 }
 
-// appLoader()
+appLoader()
 
 // Animation
 const appAnimation = () => {
     const animR = document.querySelector('.animation-right')
     const animL = document.querySelector('.animation-left')
     const animT = document.querySelectorAll('.animation-top')
+    const projectImg = document.querySelectorAll('.project-img')
 
     // setTimeout(() => (animR.classList.add('show')), 2600)
     // setTimeout(() => (animL.classList.add('show')), 3000)
@@ -49,19 +50,19 @@ const appAnimation = () => {
     anim()
 
     function anim() {
-    const triggerBottom = window.innerHeight / 1.1
+    const triggerBottom = window.innerHeight / 1.5
     
-    animT.forEach(anim => {
+    projectImg.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         // Reset Animation Top
         // anim.classList.remove('show')
         
         if(animTop < triggerBottom) {
-            anim.classList.add('show')
+            anim.classList.add('showImg')
         } 
-        else {
-            anim.classList.remove('show')
-        }
+        // else {
+        //     anim.classList.remove('showImg')
+        // }
     })
     }
 }
@@ -113,13 +114,13 @@ const appMenuBtn = () => {
     })
 }
 
-// appMenuBtn()
+appMenuBtn()
 
 
 // Counter
-const appCounter = () => {
+const appIntObserver = () => {
     const statistics = document.querySelector('.statistics')
-    const startCount = document.querySelectorAll('.counter')
+    const projectImg = document.querySelectorAll('.counter')
     
     let CounterObserver = new IntersectionObserver(
         (entries, observer) => {
@@ -137,7 +138,7 @@ const appCounter = () => {
                     
                     if(count < target) {
                         counter.innerText = `${Math.ceil(count + increment)}`
-          setTimeout(updateCounter, 40)
+            setTimeout(updateCounter, 40)
         } else {
             counter.innerText = target
         }
@@ -146,8 +147,7 @@ const appCounter = () => {
     updateCounter()
 })
 
-// observer.unobserve(statistics)
-// observation is only one time
+// observer.unobserve(statistics) - observation is only one time
 observer.unobserve(statistics)
 
 },
@@ -159,7 +159,7 @@ observer.unobserve(statistics)
 CounterObserver.observe(statistics)
 }
 
-// appCounter()
+// appIntObserver()
 
 
 // Faq
@@ -264,25 +264,25 @@ const appMoveTo = () => {
 appMoveTo()
 
 // Animation Mouse Move
-const moveElements = (e) => {
-    const shapes = document.querySelectorAll('.shape')
-    const tracker = document.querySelector('.tracker')
+// const moveElements = (e) => {
+//     const shapes = document.querySelectorAll('.shape')
+//     const tracker = document.querySelector('.tracker')
 
-    tracker.style.top = `${e.clientY}px`
-    tracker.style.left = `${e.clientX}px`
-    tracker.style.opacity = 1
+//     tracker.style.top = `${e.clientY}px`
+//     tracker.style.left = `${e.clientX}px`
+//     tracker.style.opacity = 1
 
-    shapes.forEach((shape) => {
-        const shapeOffset = shape.getAttribute("data-offset")
+//     shapes.forEach((shape) => {
+//         const shapeOffset = shape.getAttribute("data-offset")
 
-        let offsetX = (window.innerWidth - e.clientX) * shapeOffset
-        let offsetY = (window.innerHeight - e.clientY) * shapeOffset
+//         let offsetX = (window.innerWidth - e.clientX) * shapeOffset
+//         let offsetY = (window.innerHeight - e.clientY) * shapeOffset
 
-        shape.style.translate = `${offsetX}px ${offsetY}px`
-    })
-}
+//         shape.style.translate = `${offsetX}px ${offsetY}px`
+//     })
+// }
 
-document.addEventListener("mousemove", moveElements)
+// document.addEventListener("mousemove", moveElements)
 
 
 // Parallax Scrolling
