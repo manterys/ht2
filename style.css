@@ -139,7 +139,6 @@ img {
 
 /* Translate Animation */
 .anim-container {
-    margin-bottom: var(--space-1_5);
     overflow: hidden;
 }
 .anim-text-top {
@@ -261,10 +260,11 @@ img {
     height: 1px;
     background: var(--gray-90);
     transition: var(--transition-0_3);
-    animation: menu 1s ease-out 3s forwards;
+    animation: menu 1s ease-out forwards;
 }
 .hamburger-top {
     top: 12px;
+    animation-delay: 3s;
 }
 .hamburger-middle {
     animation-delay: 3.2s;
@@ -311,12 +311,32 @@ img {
     line-height: 1.5;
     margin-bottom: 2rem;
 }
-li a {
+.nav ul li {
+    overflow: hidden;
+}
+.nav li a {
+    display: inline-block;
     color: var(--gray-95);
     font-weight: var(--fw-thin);
     font-size:55px;
     letter-spacing: -1px;
-    transition: var(--transition-0_3);
+    transition: all 1s ease .5s;
+    transform: translateY(100%);
+}
+.nav li:nth-child(2) a {
+    transition-delay: .6s;
+}
+.nav li:nth-child(3) a {
+    transition-delay: .7s;
+}
+.nav li:nth-child(4) a {
+    transition-delay: .8s;
+}
+.nav li:nth-child(5) a {
+    transition-delay: .9s;
+}
+.menuActive .nav li a {
+    transform: translateY(0);
 }
 li a:hover {
     color: var(--gray-70);
@@ -551,7 +571,7 @@ h1 span:last-child::before{
 .faq-container {
     overflow: hidden;
     border-bottom: 1px solid var(--gray-30);
-    /* padding: 2rem 0; */
+    padding: 2rem 0;
 }
 .faq img {
     width: 10%;
