@@ -138,7 +138,19 @@ img {
 }
 
 /* Translate Animation */
-.animation-left, .animation-right, .animation-top {
+.anim-container {
+    margin-bottom: var(--space-1_5);
+    overflow: hidden;
+}
+.anim-text-top {
+    transform: translateY(100%);
+    transition: all 0.8s ease;
+}
+.showText {
+    transform: translateY(0);
+}
+
+/* .animation-left, .animation-right, .animation-top {
     opacity: 0;
     transition: var(--transition-animation);
 }
@@ -154,7 +166,7 @@ img {
 .show {
     opacity: 1;
     transform: translateY(-150px);
-}
+} */
 
 /* Page */
 .page {
@@ -241,7 +253,6 @@ img {
     background-color: transparent;
     outline: none;
     border: none;
-    
 }
 .hamburger-top, .hamburger-middle, .hamburger-bottom {
     position: absolute;
@@ -362,14 +373,9 @@ h2 {
     font-weight: var(--fw-bold);
     letter-spacing: 0px;
     line-height: .9;
-    /* margin-top: var(--space-1_5); */
-}
-.about h2 {
-    margin-bottom: var(--space-1_5);
 }
 .projects h2 {
     font-size: 19vw;
-    margin-bottom: var(--space-1_5);
 }
 .faq h2 {
     font-size: 19vw;
@@ -426,7 +432,6 @@ p{
     font-weight: var(--fw-thin);
     /* border-bottom: 1px solid rgb(97, 97, 97);  */
 }
-
 
 /* Showcase */
 .showcase {
@@ -497,10 +502,14 @@ h1 span:last-child::before{
 
 /* Projects */
 .projects {
-    background-color: var(--gray-5);
     padding-top: var(--space-1_5);
     padding-bottom: var(--space-1_5);
 }
+.projects-title {
+    overflow: hidden;
+    margin-bottom: var(--space-1_5);
+}
+
 .project {
     margin-bottom: 8rem;
 }
@@ -542,11 +551,12 @@ h1 span:last-child::before{
 .faq-container {
     overflow: hidden;
     border-bottom: 1px solid var(--gray-30);
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
 }
 .faq img {
     width: 10%;
     position: absolute;
+    top: 0;
     right: 0;
     transition: var(--transition-0_3);
 }

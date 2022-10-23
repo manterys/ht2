@@ -39,30 +39,34 @@ appLoader()
 const appAnimation = () => {
     const animR = document.querySelector('.animation-right')
     const animL = document.querySelector('.animation-left')
-    const animT = document.querySelectorAll('.animation-top')
+    const animTextTop = document.querySelectorAll('.anim-text-top')
     const projectImg = document.querySelectorAll('.project-img')
-
-    // setTimeout(() => (animR.classList.add('show')), 2600)
-    // setTimeout(() => (animL.classList.add('show')), 3000)
 
     window.addEventListener('scroll', anim)
 
     anim()
 
     function anim() {
-    const triggerBottom = window.innerHeight / 1.5
+    const triggerBottom = window.innerHeight / 1.7
+    const triggerTop = window.innerHeight / 1.2
+
+    animTextTop.forEach(anim => {
+        const animTop = anim.getBoundingClientRect().top
+
+        if(animTop < triggerTop) {
+            anim.classList.add('showText')
+        }
+        else {
+            anim.classList.remove('showText')
+        }
+    })
     
     projectImg.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
-        // Reset Animation Top
-        // anim.classList.remove('show')
-        
+
         if(animTop < triggerBottom) {
             anim.classList.add('showImg')
-        } 
-        // else {
-        //     anim.classList.remove('showImg')
-        // }
+        }
     })
     }
 }
@@ -90,7 +94,7 @@ const appStickyHeader = () => {
     console.log(triggerHeight)
 }
 
-appStickyHeader()
+// appStickyHeader()
 
 
 // Menu Button
@@ -99,12 +103,6 @@ const appMenuBtn = () => {
     if(!menuBtn) return
 
     menuBtn.addEventListener('click', () => page.classList.toggle('menuActive'))
-
-    window.addEventListener('resize', function() {
-        if (window.matchMedia('(min-width: 720px)').matches) {
-            if (page.classList.contains('menuActive')) page.classList.remove('menuActive')
-        }
-    })
 
     const nav = document.querySelector('.nav')
     nav.querySelectorAll('.nav a').forEach(function(link) {
