@@ -142,8 +142,9 @@ img {
     overflow: hidden;
 }
 .anim-text-top {
+    display: inline-block;
     transform: translateY(100%);
-    transition: all 0.8s ease;
+    transition: transform 0.8s ease;
 }
 .showText {
     transform: translateY(0);
@@ -302,7 +303,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: transform .6s ease;
+    transition: transform .6s ease .5s;
     text-transform: uppercase;
 }
 .nav ul {
@@ -320,29 +321,30 @@ img {
     font-weight: var(--fw-thin);
     font-size:55px;
     letter-spacing: -1px;
-    transition: all 1s ease .5s;
     transform: translateY(100%);
+    transition: transform 1s ease;
 }
-.nav li:nth-child(2) a {
+.menuActive .nav li a {
+    transition: transform 1s ease .3s;
+}
+.menuActive .nav li:nth-child(2) a {
+    transition-delay: .4s;
+}
+.menuActive .nav li:nth-child(3) a {
+    transition-delay: .5s;
+}
+.menuActive .nav li:nth-child(4) a {
     transition-delay: .6s;
 }
-.nav li:nth-child(3) a {
+.menuActive .nav li:nth-child(5) a {
     transition-delay: .7s;
-}
-.nav li:nth-child(4) a {
-    transition-delay: .8s;
-}
-.nav li:nth-child(5) a {
-    transition-delay: .9s;
 }
 .menuActive .nav li a {
     transform: translateY(0);
 }
-li a:hover {
-    color: var(--gray-70);
-}
 .menuActive .nav {
-    transform: translateY(0px);
+    transform: translateX(0px);
+    transition: transform .6s ease;
 }
 /* Media Nav */
 @media screen and (min-width: 720px) {
@@ -373,19 +375,19 @@ li a:hover {
     }
 }
 
-/* TYPOGRAPHY */
-h1, h2, h3, h4, p, span {
+/* h1, h2, h3, h4, p, span {
     transition: font-size .2s ease;
-}
+} */
+
+/* TYPOGRAPHY */
 /* Heading */
-h1 {
+.showcase p {
     font-weight: var(--fw-regular);
     text-transform: uppercase;
-    /* font-size: 25vw; */
     font-size: clamp(7rem, 25vw, 18rem);
     line-height: 0.8;
     letter-spacing: 1px;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
 }
 h2 {
     text-transform: uppercase;
@@ -403,7 +405,6 @@ h2 {
 .footer h2 {
     font-size: 16vw;
     font-weight: var(--fw-black);
-    /* margin-bottom: 2rem; */
 }
 h3 {
     cursor: pointer;
@@ -459,49 +460,43 @@ p{
     height: 100vh;
     margin-top: var(--space-2);
 }
-h1 span, h1 svg{
-    display: block;
-    transform: translateX(-120%);
-    animation: showcase 1.2s ease-out 4s forwards;
+.showcase p {
+    /* background: red; */
+    overflow: hidden;
 }
-h1 span:nth-child(1){
-    animation-delay: 4s;
+.showcase span, p a {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: showcase-text 1.5s ease 4.5s forwards;
 }
-h1 span:nth-child(2){
-    animation-delay: 4.3s;
-}
-h1 span:nth-child(3){
+.showcase p:nth-child(2) span {
     animation-delay: 4.6s;
 }
-h1 span:nth-child(4){
+.showcase p:nth-child(3) span {
+    animation-delay: 4.7s;
+}
+.showcase p:nth-child(4) span {
+    animation-delay: 4.8s;
+}
+.showcase p:last-child a {
     animation-delay: 4.9s;
 }
-h1 svg{
+@keyframes showcase-text {
+        to {
+            transform: translateY(0%);
+        }
+}
+.showcase svg{
     width: 30vw;
     height: auto;
     margin: 1rem 0;
-    animation-delay: 6.5s;
+    transform: translateX(-120%);
+    animation: showcase-svg 1.5s ease 6s forwards;
 }
-h1 span:last-child{
-    animation-delay: 5.1s;
-}
-@keyframes showcase {
+@keyframes showcase-svg {
     to {
         transform: translateX(0%);
     }
-    
-}
-h1 span:last-child{
-    position: relative;
-}
-h1 span:last-child::before{
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 5px;
-    width: 60vw;
-    height: 5px;
-    background-color: var(--gray-90);
 }
 @media screen and (orientation: landscape) and (hover: none){
     .showcase {
@@ -529,7 +524,6 @@ h1 span:last-child::before{
     overflow: hidden;
     margin-bottom: var(--space-1_5);
 }
-
 .project {
     margin-bottom: 8rem;
 }

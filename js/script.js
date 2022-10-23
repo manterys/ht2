@@ -250,6 +250,7 @@ const appMoveTo = () => {
     const moveTo = new MoveTo({
         tolerance: 30,
         duration: 1200,
+        delay: 2000,
         easing: 'easeInOutCubic',
         container: window
     }, easeFunctions)
