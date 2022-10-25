@@ -6,7 +6,6 @@ const appLoader = () => {
     const loader = document.querySelector('.loader')
     if (!loader) return
     
-    
     function load() {
         setTimeout(() => {
             loader.style.opacity = 0
@@ -20,6 +19,53 @@ const appLoader = () => {
 }
 appLoader()
 
+// Page Transition
+// https://www.youtube.com/watch?v=jEaN8PpyezM
+const appPageTransition = () => {
+    const link = document.querySelector('.nav a')
+    const transition_el = document.querySelector('.transition')
+    link.addEventListener('click', (e) => {
+        e.preventDefault()
+        transition_el.classList.add('slide')
+        setTimeout(() => {
+            window.location = link.href
+        }, 900)
+    })
+}
+appPageTransition()
+
+// Single Letter Animation
+// https://www.youtube.com/watch?v=GUEB9FogoP8
+
+const appLetterAnimation = () => {
+    const text = document.querySelector('.lead')
+    const strText = text.textContent
+    const splitText = strText.split('')
+    text.textContent = ""
+    for (let i = 0; i < splitText.length; i++) {
+        text.innerHTML += "<span>" + splitText[i] + "</span>"
+    }
+    
+    let char = 0
+    let timer = setInterval(animLetter, 15)
+    
+    function animLetter() {
+        const span = text.querySelectorAll('.lead span')[char]
+        span.classList.add('fade')
+        char++
+        if(char === splitText.length) {
+            complete()
+            return;
+        }
+    }
+    
+    function complete() {
+        clearInterval(timer)
+        timer = null
+    }
+}
+// appLetterAnimation()
+
 // Animation
 const appAnimation = () => {
     // const animR = document.querySelector('.animation-right')
@@ -28,17 +74,17 @@ const appAnimation = () => {
     const projectImg = document.querySelectorAll('.project-img')
 
     window.addEventListener('scroll', anim)
-
+    
     anim()
-
+    
     function anim() {
-    const triggerBottom = window.innerHeight / 1.7
-    const triggerTop = window.innerHeight / 1.2
-
-    animTextTop.forEach(anim => {
-        const animTop = anim.getBoundingClientRect().top
-
-        if(animTop < triggerTop) {
+        const triggerImg = window.innerHeight / 1.7
+        const triggerText = window.innerHeight / 1.1
+        
+        animTextTop.forEach(anim => {
+            const animTop = anim.getBoundingClientRect().top
+            
+            if(animTop < triggerText) {
             anim.classList.add('showText')
         }
         else {
@@ -49,7 +95,7 @@ const appAnimation = () => {
     projectImg.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
 
-        if(animTop < triggerBottom) {
+        if(animTop < triggerImg) {
             anim.classList.add('showImg')
         }
     })
@@ -78,36 +124,19 @@ appMenuBtn()
 
 // Counter
 const appIntObserver = () => {
-    const statistics = document.querySelector('.statistics')
-    const projectImg = document.querySelectorAll('.counter')
+    const observerSection = document.querySelector('.about')
+    const lead = document.querySelector('.lead')
     
-    let CounterObserver = new IntersectionObserver(
+    let LetterObserver = new IntersectionObserver(
         (entries, observer) => {
             let [entry] = entries;
             if (!entry.isIntersecting) return;
             
-            startCount.forEach(counter => {
-                counter.innerText = '0'
-                
-                const updateCounter = () => {
-                    const target = +counter.getAttribute('data-target')
-                    const count = +counter.innerText
-                    
-                    const increment = target / 70
-                    
-                    if(count < target) {
-                        counter.innerText = `${Math.ceil(count + increment)}`
-            setTimeout(updateCounter, 40)
-        } else {
-            counter.innerText = target
-        }
-    }
-    
-    updateCounter()
-})
+            lead.style.opacity = "1"
+            appLetterAnimation()
 
-// observer.unobserve(statistics) - observation is only one time
-observer.unobserve(statistics)
+// observer.unobserve(observerSection) - observation is only one time
+observer.unobserve(observerSection)
 
 },
 {
@@ -115,10 +144,10 @@ observer.unobserve(statistics)
     threshold: window.innerWidth > 768 ? 0.3 : 0.2,
 }
 )
-CounterObserver.observe(statistics)
+LetterObserver.observe(observerSection)
 }
 
-// appIntObserver()
+appIntObserver()
 
 
 // Faq
