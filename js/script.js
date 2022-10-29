@@ -9,15 +9,16 @@ const appLoader = () => {
     function load() {
         setTimeout(() => {
             loader.style.opacity = 0
-            loader.style.display = 'none'
-            
-            page.classList.add('loaded')
             setTimeout(() => (page.style.opacity = 1), 1000)
-        }, 2800)
+            page.classList.add('loaded')
+    
+            setTimeout(() => (loader.style.display = 'none'), 1000)
+        }, 3000)
     }   
     load()
 }
 appLoader()
+
 
 // Page Transition
 // https://www.youtube.com/watch?v=jEaN8PpyezM
@@ -34,42 +35,9 @@ const appPageTransition = () => {
 }
 appPageTransition()
 
-// Single Letter Animation
-// https://www.youtube.com/watch?v=GUEB9FogoP8
-
-const appLetterAnimation = () => {
-    const text = document.querySelector('.lead')
-    const strText = text.textContent
-    const splitText = strText.split('')
-    text.textContent = ""
-    for (let i = 0; i < splitText.length; i++) {
-        text.innerHTML += "<span>" + splitText[i] + "</span>"
-    }
-    
-    let char = 0
-    let timer = setInterval(animLetter, 15)
-    
-    function animLetter() {
-        const span = text.querySelectorAll('.lead span')[char]
-        span.classList.add('fade')
-        char++
-        if(char === splitText.length) {
-            complete()
-            return;
-        }
-    }
-    
-    function complete() {
-        clearInterval(timer)
-        timer = null
-    }
-}
-// appLetterAnimation()
 
 // Animation
 const appAnimation = () => {
-    // const animR = document.querySelector('.animation-right')
-    // const animL = document.querySelector('.animation-left')
     const animTextTop = document.querySelectorAll('.anim-text-top')
     const projectImg = document.querySelectorAll('.project-img')
 
@@ -101,7 +69,6 @@ const appAnimation = () => {
     })
     }
 }
-
 appAnimation()
 
 
@@ -122,7 +89,39 @@ const appMenuBtn = () => {
 appMenuBtn()
 
 
-// Counter
+// Single Letter Animation
+// https://www.youtube.com/watch?v=GUEB9FogoP8
+const appLetterAnimation = () => {
+    const text = document.querySelector('.lead')
+    const contentText = text.textContent
+    const splitText = contentText.split('')
+    text.textContent = ""
+    
+    for (let i = 0; i < splitText.length; i++) {
+        text.innerHTML += "<span>" + splitText[i] + "</span>"
+    }
+
+    let char = 0
+    let timer = setInterval(animLetter, 15)
+    
+    function animLetter() {
+        const span = text.querySelectorAll('.lead span')[char]
+        span.classList.add('fade')
+        char++
+        if(char === splitText.length) {
+            complete()
+            return;
+        }
+    }
+    
+    function complete() {
+        clearInterval(timer)
+        timer = null
+    }
+}
+
+
+// Intersection Observer
 const appIntObserver = () => {
     const observerSection = document.querySelector('.about')
     const lead = document.querySelector('.lead')
@@ -146,7 +145,6 @@ observer.unobserve(observerSection)
 )
 LetterObserver.observe(observerSection)
 }
-
 appIntObserver()
 
 
